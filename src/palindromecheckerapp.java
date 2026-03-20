@@ -1,27 +1,27 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class palindromecheckerapp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Stack<Character> stack = new Stack<>();
 
-        while (true) {
-            System.out.print("Enter a word: ");
-            String word = sc.nextLine();
+        System.out.print("Enter a word: ");
+        String word = sc.nextLine();
 
-            String reversed = new StringBuilder(word).reverse().toString();
+        for (char c : word.toCharArray()) {
+            stack.push(c);
+        }
 
-            if (word.equalsIgnoreCase(reversed)) {
-                System.out.println("Palindrome");
-            } else {
-                System.out.println("Not Palindrome");
-            }
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed += stack.pop();
+        }
 
-            System.out.print("Continue? (yes/no): ");
-            String choice = sc.nextLine();
-
-            if (choice.equalsIgnoreCase("no")) {
-                break;
-            }
+        if (word.equalsIgnoreCase(reversed)) {
+            System.out.println("Palindrome (Stack Method)");
+        } else {
+            System.out.println("Not Palindrome");
         }
     }
 }
